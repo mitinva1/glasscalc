@@ -4,7 +4,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5 import *
-hhh=0
+
 class myyScene(QGraphicsView):
 
     def der(self, glass_colour, doorx, doory,
@@ -205,7 +205,7 @@ class myyScene(QGraphicsView):
             self.scene.addItem(hinge1_2)
             self.scene.addItem(hinge2_2)
 
-        if hingeq == 3:
+        if hingeq != 2:
             hinge3 = QGraphicsRectItem(hingex,doory/2-45,62,89)
             if hinge_code[-2:] == 'TP':
                 hinge3.setBrush(QColor('yellow'))

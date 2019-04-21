@@ -7,7 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-a=0
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -336,3 +336,4 @@ class Ui_MainWindow(object):
         self.label_40.setText(_translate("MainWindow", "!"))
         self.label_41.setText(_translate("MainWindow", "!"))
         self.label_42.setText(_translate("MainWindow", "!"))
+

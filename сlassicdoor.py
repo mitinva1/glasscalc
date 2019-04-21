@@ -869,7 +869,7 @@ class ExampleApp(QMainWindow, door2.Ui_GlassCalc, scene.myyScene):
         """
         date_kp = str(datetime.datetime.now()) #date our kp
         number_kp = date_kp[11:13]+date_kp[14:16]+date_kp[17:19] #number of kp
-        image = QImage((newDoor.doorx + newDoor.doorx2)/10, newDoor.doory/10 + 10, QImage.Format_ARGB32_Premultiplied)
+        image = QImage((newDoor.doorx + newDoor.doorx2 + leftGlass.width + rightGlass.width)/10, (upGlass.height+newDoor.doory)/10 + 10, QImage.Format_ARGB32_Premultiplied)
         painter = QPainter(image)
         # Render the region of interest to the QImage.
         self.scene.render(painter)
@@ -898,13 +898,17 @@ class ExampleApp(QMainWindow, door2.Ui_GlassCalc, scene.myyScene):
         else:
             ws['B36'] = 'Дверь цельно стеклянная одностворчатая'
         ws['F36'] = '1'
-        ws['H36'] = newDoor.doorPrice()*discount
-        ws['I36'] = newDoor.doorPrice()*discount
+        ws['H36'] = (newDoor.doorPrice() +
+                    upGlass.priceup() + rightGlass.priceup() +
+                    leftGlass.priceup())* discount
+        ws['I36'] = (newDoor.doorPrice() +
+                    upGlass.priceup() + rightGlass.priceup() +
+                    leftGlass.priceup())* discount
         ws['F37'] = newDoor.area
         if door_installation_price != 0:
             ws['B37'] = 'монтаж'
             ws['H37'] = door_installation_price
-            ws['I37'] = door_installation_price*newDoor.area
+            ws['I37'] = door_installation_price*(newDoor.area + upGlass.area() + rightGlass.area() + leftGlass.area())
         if inst_door_closer != 0:
             ws['B38'] = 'установка доводчика'
             ws['F38'] = newDoor.quantitydoor
