@@ -206,7 +206,8 @@ class ExampleApp(QMainWindow, door2.Ui_GlassCalc, scene.myyScene):
         self.comboBox_40.activated[str].connect(self.onActivated40)
 #scene
         self.der(*newDoor.for_scene(), *upGlass.for_scene(),
-                 *rightGlass.for_scene(), *leftGlass.for_scene())
+                 *rightGlass.for_scene(), *leftGlass.for_scene(),
+                 *newDoor.for_scene2())
         self.lineEdit.setText('1000')
         self.lineEdit_2.setText('2000')
         self.lineEdit_3.setText('1000')
@@ -578,7 +579,7 @@ class ExampleApp(QMainWindow, door2.Ui_GlassCalc, scene.myyScene):
         global upCap
         xxx = doorclass.GlazingProfile
         if text == 'верх без':
-            upCape = doorclass.GlazingCap('none')
+            upCap = doorclass.GlazingCap('none')
         else:
             basename = 'cap40'
             upCap = connectbs2(text, basename, xxx)
@@ -689,6 +690,7 @@ class ExampleApp(QMainWindow, door2.Ui_GlassCalc, scene.myyScene):
 #Вывод на печать
     def upt(self):
         self.update()
+
 #filling class newDoor
         if len(self.lineEdit.text()) > 1:
             newDoor.doorx = float(self.lineEdit.text())
@@ -815,19 +817,20 @@ class ExampleApp(QMainWindow, door2.Ui_GlassCalc, scene.myyScene):
         newDoor.knob_name2 = knob2.name
         newDoor.knob_price = float(knob.price)
         newDoor.knob_price2 = float(knob2.price)
+        newDoor.left_profile_name = leftProfile.name
+        newDoor.right_profile_name = rightProfile.name
+        newDoor.leftCap_name = leftCap.name
+        newDoor.rightCap_name = rightCap.name
 
-        upProfile.length_real = (upGlass.width + rightGlass.width +leftGlass.width)
+        newDoor.upProfile_name = upProfile.name
+        newDoor.upCap_name = upCap.name
+        newDoor.downProfile_name = downProfile.name
+        newDoor.downCap_name = downCap.name
 
 #для верхнего профиля
         if (upGlass.width == 0 and rightGlass.width == 0 and leftGlass.width ==0):
             #upProfile = doorclass.GlazingProfile('none')
-            leftProfile = doorclass.GlazingProfile('none')
-            rightProfile = doorclass.GlazingProfile('none')
-            downProfile = doorclass.GlazingProfile('none')
-            upCap = doorclass.GlazingCap('none')
-            leftCap = doorclass.GlazingCap('none')
-            rightCap = doorclass.GlazingCap('none')
-            downCap = doorclass.GlazingCap('none')
+
             self.comboBox_33.setCurrentIndex(0)
             self.comboBox_33.activated[str].connect(self.onActivated33)
             self.comboBox_34.setCurrentIndex(0)
@@ -837,20 +840,113 @@ class ExampleApp(QMainWindow, door2.Ui_GlassCalc, scene.myyScene):
             self.comboBox_38.setCurrentIndex(0)
             self.comboBox_39.setCurrentIndex(0)
             self.comboBox_40.setCurrentIndex(0)
+
+            leftProfile.price = 0
+            newDoor.left_profile_name = 'none'
+            rightProfile.price = 0
+            newDoor.right_profile_name = 'none'
+            upProfile.price = 0
+            newDoor.upProfile_name = 'none'
+            upCap.price = 0
+            newDoor.upCap_name = 'none'
+            downProfile.price = 0
+            newDoor.downProfile_name ='none'
+            downCap.price = 0
+            newDoor.downCap_name = 'none'
+
+            leftCap.price = 0
+            newDoor.leftCap_name = 'none'
+            rightCap.price = 0
+            newDoor.rightCap_name = 'none'
+
         elif (upGlass.width == 0 and rightGlass.width == 0):
             self.comboBox_35.setCurrentIndex(0)
-            rightProfile = doorclass.GlazingProfile('none')
+            rightProfile.price = 0# = doorclass.GlazingProfile('none')
+            newDoor.right_profile_name = 'none'
+            rightCap.price = 0
+            newDoor.rightCap_name = 'none'
             self.comboBox_39.setCurrentIndex(0)
-            rightCap = doorclass.GlazingCap('none')
+
         elif (upGlass.width == 0 and leftGlass.width ==0):
             self.comboBox_34.setCurrentIndex(0)
-            leftProfile = doorclass.GlazingProfile('none')
+            leftProfile.price = 0#doorclass.GlazingProfile('none')
+            newDoor.left_profile_name = 'none'
+            leftCap.price = 0
+            newDoor.leftCap_name = 'none'
             self.comboBox_38.setCurrentIndex(0)
-            leftCap = doorclass.GlazingCap('none')
+            leftCap.price = 0#doorclass.GlazingCap('none')
+        elif (leftGlass.width == 0 and  leftGlass.width ==0):
+            self.comboBox_36.setCurrentIndex(0)
+            self.comboBox_40.setCurrentIndex(0)
+
+#downProfile
+        try:
+            newDoor.downProfile_length = (rightGlass.width + leftGlass.width)
+            newDoor.downCap_length = (rightGlass.width + leftGlass.width)
+        except:
+            newDoor.downProfile_length = 0
+            newDoor.downCap_length = 0
+#upProfile
+        try:
+            newDoor.upProfile_length = (rightGlass.width + leftGlass.width +
+                                       upGlass.width)
+            newDoor.upCap_length = (rightGlass.width + leftGlass.width +
+                                       upGlass.width)
+
+        except:
+            newDoor.upProfile_lengh = 0
+            newDoor.upCap_length = 0
+#left profile start
+
+        if (leftGlass.height == 0 and upGlass.height != 0):
+            try:
+                newDoor.left_profile_length = upGlass.height
+                newDoor.leftCap_length = upGlass.height
+            except:
+                newDoor.left_profile_length = 0
+                newDoor.leftCap_length = 0
         else:
-            pass
+            newDoor.left_profile_length = leftGlass.height
+            newDoor.leftCap_length = leftGlass.height
 
+        if (rightGlass.height == 0 and upGlass.height != 0):
+            try:
+                newDoor.right_profile_length = upGlass.height
+                newDoor.rightCap_length = upGlass.height
+            except:
+                newDoor.right_profile_length = 0
+                newDoor.rightCap_length = 0
+        else:
+            newDoor.right_profile_length = rightGlass.height
+            newDoor.rightCap_length = rightGlass.height
 
+        newDoor.left_profile_price = (float(leftProfile.price)*
+                                      newDoor.left_profile_length/1000)
+        newDoor.right_profile_price = (float(rightProfile.price)*
+                                      newDoor.right_profile_length/1000)
+        newDoor.leftCap_price = (float(leftCap.price)*
+                                 newDoor.leftCap_length/1000*2)
+        newDoor.rightCap_price = (float(rightCap.price)*
+                                  newDoor.rightCap_length/1000*2)
+        newDoor.upProfile_price = (float(upProfile.price)*
+                                  newDoor.upProfile_length/1000)
+        newDoor.upCap_price = (float(upCap.price)*
+                                  newDoor.upCap_length/1000*2)
+        newDoor.downCap_price = (float(downCap.price)*
+                                  newDoor.downCap_length/1000*2)
+        newDoor.downProfile_price = (float(downProfile.price)*
+                                  newDoor.downProfile_length/1000*2)
+
+        if newDoor.left_profile_price == 0:
+            newDoor.left_profile_length = 0
+        if newDoor.right_profile_price == 0:
+            newDoor.right_profile_length = 0
+        if newDoor.leftCap_price == 0:
+            newDoor.leftCap_length = 0
+        if newDoor.rightCap_price == 0:
+            newDoor.rightCap_length = 0
+        upProfile.length_real = (upGlass.width + rightGlass.width +leftGlass.width)
+#left profile end
         self.newScene()#call scene
         self.textBrowser.setText('готово')
 
@@ -927,7 +1023,7 @@ class ExampleApp(QMainWindow, door2.Ui_GlassCalc, scene.myyScene):
 
         if sys.platform == "linux" or sys.platform == "linux2":
             wb.save('newkp/kp'+date_kp2+'.xlsx')
-            os.startfile(r'"newkp/kp'+date_kp2+'.xlsx"')
+            os.system("/newkp/kp'+date_kp2+'.xlsx")
         else:
             wb.save('newkp\\kp'+date_kp2+'.xlsx')
             os.startfile(r'"newkp\\kp'+date_kp2+'.xlsx"')
@@ -1095,7 +1191,8 @@ class ExampleApp(QMainWindow, door2.Ui_GlassCalc, scene.myyScene):
             newDoor.doorlock_x2 = 0
 
         self.der(*newDoor.for_scene(), *upGlass.for_scene(),
-                 *rightGlass.for_scene(), *leftGlass.for_scene())
+                 *rightGlass.for_scene(), *leftGlass.for_scene(),
+                 *newDoor.for_scene2())
 #scene screenshot
 
 def main():

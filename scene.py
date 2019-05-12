@@ -27,18 +27,25 @@ class myyScene(QGraphicsView):
             pushhandle_name2, pushhandlex2, pushhandlel2,
             doorlock_code, doorlockx, doorlocky, doorlockw, doorlockl,
             doorlock_code2, doorlockx2, doorlocky2, doorlockw2,
-            doorlockl2, knob_code, knob_code2, upx, upy, rightx, righty, leftx, lefty):
+            doorlockl2, knob_code, knob_code2, upx, upy, rightx, righty, leftx,
+            lefty, lefProfL, RProfL, leftCapL, leftCapN, rightCapL, rightCapN,
+            upProfN, upCapN, downProfN, downCapN):
         self.graphicsView = QGraphicsView(self)
         self.graphicsView.setGeometry(QRect(435, 10, 700, 550))
         self.graphicsView.setObjectName("graphicsView")
         self.scene = QGraphicsScene(self)
         self.graphicsView.scale(0.15, 0.15)
         self.graphicsView.setScene(self.scene)
+        if upy == 0:
+            zazor2 = 0
+        else:
+            zazor2 = 5
+        if doorx2 == 0:
+            zazorx = 0
+        else:
+            zazorx = 5
+
         if leftx != 0:
-            if upy == 0:
-                zazor2 = 0
-            else:
-                zazor2 = 5
             left_glass = QGraphicsRectItem(0 - leftx - 5, 0 - upy - zazor2,
                                            leftx, lefty)
             left_glass.setPen(QPen(Qt.black,  5, Qt.SolidLine))
@@ -319,5 +326,116 @@ class myyScene(QGraphicsView):
             else:
                 doorlock2.setBrush(QColor('grey'))
             self.scene.addItem(doorlock2)
+        if lefProfL != 0:
+            #if upy == 0:
+            left_prof = QGraphicsRectItem(0-leftx, 0-upy-zazor2, 35, lefProfL)
+            #left_prof.setBrush(QColor('grey'))
+            self.scene.addItem(left_prof)
+        if RProfL != 0:
+            #if upy == 0:
+            right_prof = QGraphicsRectItem(0+doorx+doorx2+rightx-35+5+zazorx,
+                                           0-upy-zazor2, 35, RProfL)
+            #left_prof.setBrush(QColor('grey'))
+            self.scene.addItem(right_prof)
+
+        if leftCapL != 0:
+            left_cap = QGraphicsRectItem(0-leftx, 0-upy-zazor2, 40, leftCapL)
+            if leftCapN[6:8] == 'ТР':
+                left_cap.setBrush(QColor('yellow'))
+            else:
+                left_cap.setBrush(QColor('grey'))
+            self.scene.addItem(left_cap)
+
+        if rightCapL != 0:
+            right_cap = QGraphicsRectItem(0+doorx+doorx2+rightx-40+5+zazorx, 0 -
+                                          upy-zazor2, 40, rightCapL)
+            if rightCapN[6:8] == 'ТР':
+                right_cap.setBrush(QColor('yellow'))
+            else:
+                right_cap.setBrush(QColor('grey'))
+            self.scene.addItem(right_cap)
+        if upProfN != 'none':
+            if upx != 0:
+                upProf = QGraphicsRectItem(0-leftx, 0-upy-zazor2, upx+
+                                           leftx + rightx, 35)
+            elif upx == 0 and leftx == 0 and rightx !=0:
+                upProf = QGraphicsRectItem(0+doorx+doorx2 + 5 + zazorx, 0 -
+                                           upy-zazor2, upx+
+                                           leftx + rightx, 35)
+            elif upx == 0 and leftx != 0 and rightx == 0:
+                upProf = QGraphicsRectItem(0 - leftx - 5, 0 - upy-zazor2 , upx +
+                                           leftx + rightx, 35)
+            elif upx == 0 and leftx != 0 and rightx == 0:
+                upProf = QGraphicsRectItem(0 - leftx - 5, 0 - upy-zazor2 , upx +
+                                           leftx + rightx, 35)
+            elif upx == 0 and leftx != 0 and rightx != 0:
+                upProf = QGraphicsRectItem(0 - leftx - 5, 0 - upy-zazor2,
+                                           leftx, 35)
+                upProf2 = QGraphicsRectItem(0+doorx+doorx2 + 5 + zazorx, 0 -
+                                            upy-zazor2, leftx, 35)
+                self.scene.addItem(upProf2)
+            self.scene.addItem(upProf)
+        if upCapN != 'none':
+            if upx != 0:
+                upCap = QGraphicsRectItem(0-leftx, 0-upy-zazor2, upx+
+                                           leftx + rightx, 40)
+            elif upx == 0 and leftx == 0 and rightx !=0:
+                upCap = QGraphicsRectItem(0+doorx+doorx2 + 5 + zazorx, 0 -
+                                           upy-zazor2, upx+
+                                           leftx + rightx, 40)
+            elif upx == 0 and leftx != 0 and rightx == 0:
+                upCap = QGraphicsRectItem(0 - leftx - 5, 0 - upy-zazor2 , upx +
+                                           leftx + rightx, 40)
+            elif upx == 0 and leftx != 0 and rightx == 0:
+                upCap = QGraphicsRectItem(0 - leftx - 5, 0 - upy-zazor2 , upx +
+                                           leftx + rightx, 40)
+            elif upx == 0 and leftx != 0 and rightx != 0:
+                upCap = QGraphicsRectItem(0 - leftx - 5, 0 - upy-zazor2,
+                                           leftx, 40)
+                upCap2 = QGraphicsRectItem(0+doorx+doorx2 + 5 + zazorx, 0 -
+                                            upy-zazor2, leftx, 40)
+                if upCapN[6:8] == 'ТР':
+                    upCap2.setBrush(QColor('yellow'))
+                else:
+                    upCap2.setBrush(QColor('grey'))
+                self.scene.addItem(upCap2)
+            if upCapN[6:8] == 'ТР':
+                upCap.setBrush(QColor('yellow'))
+            else:
+                upCap.setBrush(QColor('grey'))
+            self.scene.addItem(upCap)
+        if downProfN != 'none':
+            if leftx == 0 and rightx != 0:
+                downPr = QGraphicsRectItem(0+doorx+doorx2 + 5 + zazorx, righty -
+                                           35, rightx, 35)
+            elif leftx != 0 and rightx == 0:
+                downPr = QGraphicsRectItem(0 - leftx - 5, lefty - 35, leftx, 35)
+            else:
+                downPr = QGraphicsRectItem(0 - leftx - 5, lefty - 35, leftx, 35)
+                downPr2 = QGraphicsRectItem(0 + doorx + doorx2 + 5 + zazorx,
+                                            righty - 35, rightx, 35)
+                self.scene.addItem(downPr2)
+            self.scene.addItem(downPr)
+
+        if downCapN != 'none':
+            if leftx == 0 and rightx != 0:
+                downCap = QGraphicsRectItem(0+doorx+doorx2 + 5 + zazorx, righty -
+                                           40, rightx, 40)
+            elif leftx != 0 and rightx == 0:
+                downCap = QGraphicsRectItem(0 - leftx - 5, lefty - 40, leftx, 40)
+            else:
+                downCap = QGraphicsRectItem(0 - leftx - 5, lefty - 40, leftx, 40)
+                downCap2 = QGraphicsRectItem(0 + doorx + doorx2 + 5 + zazorx,
+                                            righty - 40, rightx, 40)
+                if downCapN[6:8] == 'ТР':
+                    downCap2.setBrush(QColor('yellow'))
+                else:
+                    downCap2.setBrush(QColor('grey'))
+                self.scene.addItem(downCap2)
+            if downCapN[6:8] == 'ТР':
+                downCap.setBrush(QColor('yellow'))
+            else:
+                downCap.setBrush(QColor('grey'))
+            self.scene.addItem(downCap)
 
         self.graphicsView.show()

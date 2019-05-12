@@ -197,7 +197,15 @@ class Door(ListInstance):
             compactor_up_name2 = 'none', compactor_up_price2 = 0,
             compactor_hinge_name = 'none', compactor_hinge_price = 0,
             compactor_hinge_name2 = 'none', compactor_hinge_price2 = 0,
-            price = 0):
+            price = 0, left_profile_name = 'none', left_profile_length=0,
+            left_profile_price=0, right_profile_name = 'none',
+            right_profile_length=0, right_profile_price=0,
+            leftCap_name = 'none', leftCap_price=0, leftCap_length=0,
+            rightCap_name = 'none', rightCap_price=0, rightCap_length=0,
+            upProfile_name = 'none', upProfile_price=0, upProfile_length=0,
+            upCap_name = 'none', upCap_price=0, upCap_length=0,
+            downProfile_name = 'none', downProfile_price=0, downProfile_length=0,
+            downCap_name = 'none', downCap_price=0, downCap_length=0):
         self.name = name
         self.quantitydoor = quantitydoor
         self.sidedoor = sidedoor
@@ -329,6 +337,30 @@ class Door(ListInstance):
         self.knob_code2 = knob_code2
         self.knob_name2 = knob_name2
         self.knob_price2 = knob_price2
+        self.left_profile_name = left_profile_name
+        self.left_profile_length = left_profile_length
+        self.left_profile_price = left_profile_price
+        self.right_profile_name = right_profile_name
+        self.right_profile_length = right_profile_length
+        self.right_profile_price = right_profile_price
+        self.leftCap_name = leftCap_name
+        self.leftCap_price = leftCap_price
+        self.leftCap_length = leftCap_length
+        self.rightCap_name = rightCap_name
+        self.rightCap_price = rightCap_price
+        self.rightCap_length = rightCap_length
+        self.upProfile_name = upProfile_name
+        self.upProfile_price = upProfile_price
+        self.upProfile_length = upProfile_length
+        self.upCap_name = upCap_name
+        self.upCap_price = upCap_price
+        self.upCap_length = upCap_length
+        self.downProfile_name = downProfile_name
+        self.downProfile_price = downProfile_price
+        self.downProfile_length = downProfile_length
+        self.downCap_name = downCap_name
+        self.downCap_price = downCap_price
+        self.downCap_length = downCap_length
     def doorPrice(self):
         return (self.doorglassprice + self.botfitprice +
                 self.botfitprice2 + self.supportbf_price +
@@ -344,7 +376,10 @@ class Door(ListInstance):
                 self.compactor_down_price2 + self.compactor_side_price + self.compactor_side_price2 + self.compactor_up_price +
                 self.compactor_up_price2 + self.compactor_hinge_price +
                 self.compactor_hinge_price2 + self.knob_price +
-                self.knob_price2)
+                self.knob_price2 + self.left_profile_price +
+                self.right_profile_price + self.leftCap_price +
+                self.rightCap_price + self.upProfile_price +
+                self.upCap_price + self.downCap_price + self.downProfile_price)
     def accessories(self):
         result = """"""
         for attr in sorted(self.__dict__):
@@ -389,8 +424,15 @@ class Door(ListInstance):
                    self.doorlock_l, self.doorlock_code2,
                    self.doorlock_x2, self.doorlock_y_2,
                    self.doorlock_w2, self.doorlock_l2, self.knob_code,
-                   self.knob_code2)
+                   self.knob_code2)# self.left_profile_length)
         return result2
+    def for_scene2(self):
+        result3 = (self.left_profile_length, self.right_profile_length,
+                   self.leftCap_length, self.leftCap_name,
+                   self.rightCap_length, self.rightCap_name,
+                   self.upProfile_name, self.upCap_name, self.downProfile_name,
+                   self.downCap_name)
+        return result3
 class GlazingProfile(ListInstance):
     def __init__(self, code='none', name='none',
                  colour='none', price=0, length=0,
