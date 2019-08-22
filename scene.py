@@ -406,27 +406,27 @@ class myyScene(QGraphicsView):
             self.scene.addItem(upCap)
         if downProfN != 'none':
             if leftx == 0 and rightx != 0:
-                downPr = QGraphicsRectItem(0+doorx+doorx2 + 5 + zazorx, righty -
+                downPr = QGraphicsRectItem(0+doorx+doorx2 + 5 + zazorx, doory -
                                            35, rightx, 35)
             elif leftx != 0 and rightx == 0:
-                downPr = QGraphicsRectItem(0 - leftx - 5, lefty - 35, leftx, 35)
+                downPr = QGraphicsRectItem(0 - leftx - 5, doory - 35, leftx, 35)
             else:
-                downPr = QGraphicsRectItem(0 - leftx - 5, lefty - 35, leftx, 35)
+                downPr = QGraphicsRectItem(0 - leftx - 5, doory - 35, leftx, 35)
                 downPr2 = QGraphicsRectItem(0 + doorx + doorx2 + 5 + zazorx,
-                                            righty - 35, rightx, 35)
+                                            doory - 35, rightx, 35)
                 self.scene.addItem(downPr2)
             self.scene.addItem(downPr)
 
         if downCapN != 'none':
             if leftx == 0 and rightx != 0:
-                downCap = QGraphicsRectItem(0+doorx+doorx2 + 5 + zazorx, righty -
+                downCap = QGraphicsRectItem(0+doorx+doorx2 + 5 + zazorx, doory -
                                            40, rightx, 40)
             elif leftx != 0 and rightx == 0:
-                downCap = QGraphicsRectItem(0 - leftx - 5, lefty - 40, leftx, 40)
+                downCap = QGraphicsRectItem(0 - leftx - 5, doory - 40, leftx, 40)
             else:
-                downCap = QGraphicsRectItem(0 - leftx - 5, lefty - 40, leftx, 40)
+                downCap = QGraphicsRectItem(0 - leftx - 5, doory - 40, leftx, 40)
                 downCap2 = QGraphicsRectItem(0 + doorx + doorx2 + 5 + zazorx,
-                                            righty - 40, rightx, 40)
+                                            doory - 40, rightx, 40)
                 if downCapN[6:8] == 'ТР':
                     downCap2.setBrush(QColor('yellow'))
                 else:

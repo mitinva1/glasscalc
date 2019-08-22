@@ -683,8 +683,8 @@ class ExampleApp(QMainWindow, door2.Ui_GlassCalc, scene.myyScene):
             self.label_38.hide()
             self.lineEdit_9.hide()
             self.lineEdit_10.hide()
-            self.lineEdit_9.clear()
-            self.lineEdit_10.clear()
+            #self.lineEdit_9.clear()
+            #self.lineEdit_10.clear()
 
 
 #Вывод на печать
@@ -1023,12 +1023,11 @@ class ExampleApp(QMainWindow, door2.Ui_GlassCalc, scene.myyScene):
 
         if sys.platform == "linux" or sys.platform == "linux2":
             wb.save('newkp/kp'+date_kp2+'.xlsx')
-            os.system("/newkp/kp'+date_kp2+'.xlsx")
+            os.startfile(r'"newkp/kp'+date_kp2+'.xlsx"')
         else:
             wb.save('newkp\\kp'+date_kp2+'.xlsx')
             os.startfile(r'"newkp\\kp'+date_kp2+'.xlsx"')
         self.textBrowser.setText('Номер коммерческого ' + number_kp)
-
 #my scene
     def newScene(self):
     #botFitting
