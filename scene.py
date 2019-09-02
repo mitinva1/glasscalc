@@ -53,6 +53,9 @@ class myyScene(QGraphicsView):
             if glass_colour == 'Матовое':
                 grad_5.setColorAt(0.0, QtGui.QColor(240, 255, 255))
                 grad_5.setColorAt(1.0, QtGui.QColor(220, 220, 220))
+            elif glass_colour == 'Бронза':
+                grad_5.setColorAt(0.0, QtGui.QColor(150, 130, 50))
+                grad_5.setColorAt(1.0, QtGui.QColor(150, 130, 50))
             else:
                 grad_5.setColorAt(0.0, QtGui.QColor("darkCyan"))
                 grad_5.setColorAt(1.0, QtGui.QColor("cyan"))
@@ -71,6 +74,9 @@ class myyScene(QGraphicsView):
             if glass_colour == 'Матовое':
                 grad_4.setColorAt(0.0, QtGui.QColor(240, 255, 255))
                 grad_4.setColorAt(1.0, QtGui.QColor(220, 220, 220))
+            elif glass_colour == 'Бронза':
+                grad_4.setColorAt(0.0, QtGui.QColor(150, 130, 50))
+                grad_4.setColorAt(1.0, QtGui.QColor(150, 130, 50))
             else:
                 grad_4.setColorAt(0.0, QtGui.QColor("darkCyan"))
                 grad_4.setColorAt(1.0, QtGui.QColor("cyan"))
@@ -84,6 +90,9 @@ class myyScene(QGraphicsView):
             if glass_colour == 'Матовое':
                 grad_3.setColorAt(0.0, QtGui.QColor(240, 255, 255))
                 grad_3.setColorAt(1.0, QtGui.QColor(220, 220, 220))
+            elif glass_colour == 'Бронза':
+                grad_3.setColorAt(0.0, QtGui.QColor(150, 130, 50))
+                grad_3.setColorAt(1.0, QtGui.QColor(150, 130, 50))
             else:
                 grad_3.setColorAt(0.0, QtGui.QColor("darkCyan"))
                 grad_3.setColorAt(1.0, QtGui.QColor("cyan"))
@@ -96,6 +105,9 @@ class myyScene(QGraphicsView):
         if glass_colour == 'Матовое':
             grad.setColorAt(0.0, QtGui.QColor(240, 255, 255))
             grad.setColorAt(1.0, QtGui.QColor(220, 220, 220))
+        elif glass_colour == 'Бронза':
+            grad.setColorAt(0.0, QtGui.QColor(150, 130, 50))
+            grad.setColorAt(1.0, QtGui.QColor(150, 130, 50))
         else:
             grad.setColorAt(0.0, QtGui.QColor("darkCyan"))
             grad.setColorAt(1.0, QtGui.QColor("cyan"))
@@ -114,6 +126,9 @@ class myyScene(QGraphicsView):
             if glass_colour == 'Матовое':
                 grad_2.setColorAt(0.0, QtGui.QColor(220, 220, 220))
                 grad_2.setColorAt(1.0, QtGui.QColor(240, 255, 255))
+            elif glass_colour == 'Бронза':
+                grad_2.setColorAt(0.0, QtGui.QColor(150, 130, 50))
+                grad_2.setColorAt(1.0, QtGui.QColor(150, 130, 50))
             else:
                 grad_2.setColorAt(0.0, QtGui.QColor("darkCyan"))
                 grad_2.setColorAt(1.0, QtGui.QColor("cyan"))
